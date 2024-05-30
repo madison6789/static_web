@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单事件</title>
+		<style>
+			input{
+				width:500px;
+				height:500px;
+				font-size: 100px;
+			}
+		</style>
+	</head>
+	<body>
+        <!-- 定义表单 -->
+		<form action="#" onsubmit="return validate()">
+			<input type="text" id="input">
+			<input type="button" id="code" onclick="createCode()" title="点击更换验证码" value="1+1=?">
+			<input type="submit" value="提交">
+		</form>
+		<script>
+				var result=2 ; //全局变量 
+				function createCode(){ 
+				  var checkCode = document.getElementById("code");  //获取id=code的元素 
+				  var first = Math.floor(Math.random()*10);//生成随机数（0~10）  
+				  var second = Math.floor(Math.random()*10);//生成随机数（0~10）  
+				  checkCode.value = first+"+"+second+"= ?";//新的加法运算赋值给code
+				  result = first + second;
+				} 
+				//校验验证码  
+				function validate(){  
+				  var inputCode = document.getElementById("input").value; //取获取id=input的元素 的值     
+				  if(inputCode != result ) { //若输入不一致时  
+					alert("错误"); //则弹出验证码输入错误    
+				  }else { //输入正确时  
+					alert("合格"); 
+				  }
+				  document.getElementById("input").value="";//清空
+				  createCode();//刷新计算 
+				}
+		</script>
+	</body>
+</html>
